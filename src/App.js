@@ -13,14 +13,14 @@ constructor(props) {
 }
 
 handleResult = (data) => {
-  this.setState();
+  this.setState({ results : data });
 }
 
   render() {
   return (
     <div className="App">
       <Search onResult={this.handleResult}  />
-      <List />
+      <List data={this.state.results}/>
     
   
     </div>
