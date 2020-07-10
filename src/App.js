@@ -8,20 +8,32 @@ constructor(props) {
   super(props);
 
   this.state = {
-    results: []
+    results: [],
+    isLoading: false
   }
 }
 
 handleResult = (data) => {
-  this.setState({ results : data });
+  this.setState({ results : data, isLoading: false});
+}
+
+startSearch = () => {
+  this.setState({isLoading: true});
 }
 
   render() {
+    let showing = (<List data={this.state.results}/>);
+    if (this.state.isLoading){
+    showing = "Loading...";
+  }
+
+
+
   return (
     <div className="App">
-      <Search onResult={this.handleResult}  />
+      <Search onSearchStart = {this.startSearch} onResult={this.handleResult}  />
       <List data={this.state.results}/>
-    
+      {showing}
   
     </div>
   );
